@@ -1,0 +1,6 @@
+---
+# tasks file for itigo.packages
+
+- name: Message
+  debug:
+    msg: "Your {{ ansible_system }} is not supported"
