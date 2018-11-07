@@ -16,7 +16,7 @@
   with_dict:
     - "{{ packages }}"
   when: >
-      not (ansible_chocolatey.packages | json_query(query_package) | lower) or
+      not (ansible_chocolatey.packages | json_query(query_package)) or
       item.value.version != 'latest'
   vars:
     query_package: '[?package==`{{ item.key }}`]'
