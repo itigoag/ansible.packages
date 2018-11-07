@@ -1,8 +1,8 @@
 # Ansible Role: packages
 
-[![Build Status](https://travis-ci.org/itigo/ansible.packages.svg?branch=master)](https://travis-ci.org/itigo/ansible.packages) [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://sbaerlo.ch/licence) [![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-packages-blue.svg)](https://galaxy.ansible.com/itigo/packages)
-
 ## Description
+
+This Ansible role can be installed on Windows, Debian and CentOS.
 
 ## Installation
 
@@ -12,33 +12,43 @@ ansible-galaxy install itigo.packages
 
 ## Requirements
 
+None
+
 ## Role Variables
 
 | Variable             | Default     | Comments (type)                                   |
 | :---                 | :---        | :---                                              |
-| | | |
-| | | |
+| packages_group | | |
+| packages_host | | |
 
 ## Dependencies
+
+None
 
 ## Example Playbook
 
 ```yml
 - hosts: all
   roles:
-     - itigo.packages
+     - itigoag.packages
 ```
 
 ## Changelog
 
+### 1.0.0
+
+* inital commit
+
 ## Author
 
 * [Simon Bärlocher](https://sbaerlocher.ch)
+* [ITIGO AG](https://www.itigo.ch)
 
 ## License
 
-This project is under the MIT License. See the [LICENSE](https://sbaerlo.ch/licence) file for the full license text.
+This project is under the MIT License. See the [LICENSE](licence) file for the full license text.
 
 ## Copyright
 
-(c) 2017, Simon Bärlocher
+(c) 2018, Simon Bärlocher
+(c) 2018, ITIGO AG

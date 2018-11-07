@@ -1,2 +1,51 @@
 ---
-# tasks file for itigo.packages
+# tasks file for itigoag.packages
+
+- name: "windows : ensure facts of chocolatey"
+  win_chocolatey_facts:
+  tags:
+    - configuration
+    - packages
+
+- name: "windows : install chocolatey application latest"
+  win_chocolatey:
+    name: "{{ item.key }}"
+    state: "{{ 'latest' if item.value.version == 'latest' else 'present' }}"
+    params: "{{ item.value.params | default() }}"
+    version: "{{ item.value.version if item.value.version != 'latest' else '' }}"
+  with_dict:
+    - "{{ packages }}"
+  when: >
+      not (ansible_chocolatey.packages | json_query(query_package) | lower) or
+      item.value.version != 'latest'
+  vars:
+    query_package: '[?package==`{{ item.key }}`]'
+  tags:
+    - packages
+
+- name: "windows : chocolatey application pinned"
+  win_chocolatey_pin:
+    name: "{{ item.key }}"
+  with_dict:
+    - "{{ packages }}"
+  when: >
+      item.value.pkg_update is defined and not item.value.pkg_update or
+      item.value.version != 'latest'
+  tags:
+    - configuration
+  
+- name: "windows : chocolatey upgrade scheduled"
+  win_scheduled_task:
+    name: "Chocolatey Packages upgrade"
+    description: "chocolatey upgrade all Packages evry Day at 12:00"
+    actions:
+      - path: choco.exe
+        arguments: "upgrade all -y"
+    triggers:
+      - type: daily
+        start_boundary: "2017-10-09T12:00:00"
+    username: SYSTEM
+    state: present
+    enabled: true
+  tags:
+    - configuration
