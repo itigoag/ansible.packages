@@ -16,10 +16,11 @@
   with_dict:
     - "{{ packages }}"
   when: >
-      not (ansible_chocolatey.packages | json_query(query_package)) or
+      not ( packages_var_lower | json_query(packages_var_query)) or
       item.value.version != 'latest'
   vars:
-    query_package: '[?package==`{{ item.key }}`]'
+    packages_var_query: '[?package==`{{ item.key }}`]'
+    packages_var_lower: "{{ ansible_chocolatey.packages | lower }}"
   tags:
     - packages
 
@@ -33,7 +34,7 @@
       item.value.version != 'latest'
   tags:
     - configuration
-  
+
 - name: "windows : chocolatey upgrade scheduled"
   win_scheduled_task:
     name: "Chocolatey Packages upgrade"
