@@ -19,7 +19,7 @@
       not ( packages_var_lower | json_query(packages_var_query)) or
       item.value.version != 'latest'
   vars:
-    packages_var_query: '[?package==`{{ item.key }}`]'
+    packages_var_query: '[?package==`{{ item.key | lower }}`]'
     packages_var_lower: "{{ ansible_chocolatey.packages | lower }}"
   tags:
     - packages
