@@ -2,11 +2,11 @@
 
 galaxy_info:
   role_name: packages
-  author:
-  description:
-  company:
+  author: ITIGO AG <opensource@itigo.ch>
+  company: ITIGO AG
+  description: 'Installs a list of packages on the systems Centos, Ubuntu, Debian and Windows (choholatey)'
   license: MIT
-  min_ansible_version: 2
+  min_ansible_version: 2.5
   platforms:
     - name: Archlinux
       versions:
@@ -29,7 +29,16 @@ galaxy_info:
     - name: Debian
       versions:
         - wheezy
+    - name: Windows
+      versions:
+        - all
 
-  galaxy_tags: []
+  galaxy_tags:
+    - yum
+    - apt
+    - choco
+    - chocolatey
+    - package
+    - packages
 
 dependencies: []
