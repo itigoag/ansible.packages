@@ -19,6 +19,18 @@
     - configuration
     - packages
 
+- name: add group packages
+  set_fact:
+    temp_dict: "{'{{item.key}}':'{{ item.value }}'}"
+    packages: "{{ packages | combine( {item.key:item.value} ) }}"
+  with_dict: "{{ packages_group | default({}) }}"
+
+- name: add host packages
+  set_fact:
+    temp_dict: "{'{{item.key}}':'{{ item.value }}'}"
+    packages: "{{ packages | combine( {item.key:item.value} ) }}"
+  with_dict: "{{ packages_host | default({}) }}"
+
 - name: include distribution tasks
   include_tasks: "{{ loop_distribution }}"
   with_first_found:
