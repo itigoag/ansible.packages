@@ -21,13 +21,13 @@
 
 - name: add group packages
   set_fact:
-    temp_dict: "{'{{item.key}}':'{{ item.value }}'}"
+    temp_dict: "{'{{ item.key }}':'{{ item.value }}'}"
     packages: "{{ packages | combine( {item.key:item.value} ) }}"
   with_dict: "{{ packages_group | default({}) }}"
 
 - name: add host packages
   set_fact:
-    temp_dict: "{'{{item.key}}':'{{ item.value }}'}"
+    temp_dict: "{'{{ item.key }}':'{{ item.value }}'}"
     packages: "{{ packages | combine( {item.key:item.value} ) }}"
   with_dict: "{{ packages_host | default({}) }}"
 
