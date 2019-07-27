@@ -2,49 +2,57 @@
 # tasks file for itigo.packages
 
 - name: add OS specific variables
-  include_vars: "{{ loop_vars }}"
+  include_vars: '{{ loop_vars }}'
   with_first_found:
     - files:
-        - "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
-        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-        - "{{ ansible_distribution }}.yml"
-        - "{{ ansible_os_family }}.yml"
-        - "{{ ansible_system }}.yml"
-        - "defaults.yml"
+        - '{{ distribution }}-{{ distribution_version }}.yml'
+        - '{{ distribution }}-{{ distribution_major_version }}.yml'
+        - '{{ distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+        - '{{ ansible_system }}.yml'
+        - 'defaults.yml'
       paths:
-        - "vars"
+        - 'vars'
   loop_control:
     loop_var: loop_vars
+  vars:
+    distribution: '{{ ansible_distribution }}'
+    distribution_version: '{{ ansible_distribution_version }}'
+    distribution_major_version: '{{ ansible_distribution_major_version }}'
   tags:
     - configuration
     - packages
 
 - name: add group packages
   set_fact:
-    temp_dict: "{'{{ item.key }}':'{{ item.value }}'}"
-    packages: "{{ packages | combine( {item.key:item.value} ) }}"
-  with_dict: "{{ packages_group | default({}) }}"
+    temp_dict: "{'{{item.key}}':'{{ item.value }}'}"
+    packages: '{{ packages | combine( {item.key:item.value} ) }}'
+  with_dict: '{{ packages_group | default({}) }}'
 
 - name: add host packages
   set_fact:
-    temp_dict: "{'{{ item.key }}':'{{ item.value }}'}"
-    packages: "{{ packages | combine( {item.key:item.value} ) }}"
-  with_dict: "{{ packages_host | default({}) }}"
+    temp_dict: "{'{{item.key}}':'{{ item.value }}'}"
+    packages: '{{ packages | combine( {item.key:item.value} ) }}'
+  with_dict: '{{ packages_host | default({}) }}'
 
 - name: include distribution tasks
-  include_tasks: "{{ loop_distribution }}"
+  include_tasks: '{{ loop_distribution }}'
   with_first_found:
     - files:
-        - "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
-        - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
-        - "{{ ansible_distribution }}.yml"
-        - "{{ ansible_os_family }}.yml"
-        - "{{ ansible_system }}.yml"
-        - "defaults.yml"
+        - '{{ distribution }}-{{ distribution_version }}.yml'
+        - '{{ distribution }}-{{ distribution_major_version }}.yml'
+        - '{{ distribution }}.yml'
+        - '{{ ansible_os_family }}.yml'
+        - '{{ ansible_system }}.yml'
+        - 'defaults.yml'
       paths:
-        - "distribution"
+        - 'distribution'
   loop_control:
     loop_var: loop_distribution
+  vars:
+    distribution: '{{ ansible_distribution }}'
+    distribution_version: '{{ ansible_distribution_version }}'
+    distribution_major_version: '{{ ansible_distribution_major_version }}'
   tags:
     - configuration
     - packages
