@@ -1,6 +1,6 @@
 # Ansible Role: packages
 
-[![Build Status](https://img.shields.io/travis-ci/itigoag/ansible.packages.svg?branch=master&style=popout-square)](https://travis-ci.org/itigoag/ansible.packages) [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=popout-square)](https://sbaerlo.ch/licence) [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-packages-blue.svg?style=popout-square)](https://galaxy.ansible.com/itigoag/packages) [![Ansible Role](https://img.shields.io/ansible/role/d/35019.svg?style=popout-square)](https://galaxy.ansible.com/itigoag/packages)
+[![Build Status](https://img.shields.io/travis/itigoag/ansible.packages.svg?branch=master&style=popout-square)](https://travis-ci.org/itigoag/ansible.packages) [![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=popout-square)](https://sbaerlo.ch/licence) [![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-packages-blue.svg?style=popout-square)](https://galaxy.ansible.com/itigoag/packages) [![Ansible Role](https://img.shields.io/ansible/role/d/35019.svg?style=popout-square)](https://galaxy.ansible.com/itigoag/packages)
 
 ## Description
 
