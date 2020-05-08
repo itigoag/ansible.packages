@@ -1,0 +1,9 @@
+---
+- name: Converge
+  hosts: all
+  vars:
+    packages:
+      nano:
+        version: latest
+  roles:
+    - role: itigoag.packages
