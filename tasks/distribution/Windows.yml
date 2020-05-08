@@ -20,19 +20,3 @@
     packages_var_lower: '{{ ansible_chocolatey.packages | lower }}'
   tags:
     - packages
-
-- name: 'windows : chocolatey upgrade scheduled'
-  win_scheduled_task:
-    name: 'Chocolatey Packages upgrade'
-    description: 'chocolatey upgrade all Packages evry Day at 12:00'
-    actions:
-      - path: choco.exe
-        arguments: 'upgrade all -y'
-    triggers:
-      - type: daily
-        start_boundary: '2017-10-09T12:00:00'
-    username: SYSTEM
-    state: present
-    enabled: true
-  tags:
-    - configuration
