@@ -4,7 +4,7 @@
 - name: 'windows : install {{ key }} {{ version }}'
   win_chocolatey:
     name: '{{ key }}'
-    state: "{{ 'latest' if version == 'latest' else 'present' }}"
+    state: "{{ state | default('latest' if version == 'latest' else 'present') }}"
     params: '{{ params }}'
     version: "{{ version if version != 'latest' else omit }}"
     pinned: '{{ pinned }}'
