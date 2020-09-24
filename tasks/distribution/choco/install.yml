@@ -4,13 +4,15 @@
 - name: 'windows : install {{ key }} {{ version }}'
   win_chocolatey:
     name: '{{ key }}'
-    state: "{{ 'latest' if version == 'latest' else 'present' }}"
+    state: "{{ state | default('latest' if version == 'latest' else 'present') }}"
     params: '{{ params }}'
     version: "{{ version if version != 'latest' else omit }}"
     pinned: '{{ pinned }}'
+    source: '{{ source }}'
   vars:
     key: '{{ loop_choco.key }}'
     version: '{{ loop_choco.value.version }}'
     params: '{{ loop_choco.value.params | default(omit) }}'
     pkg_pin: '{{ loop_choco.value.pkg_update | default(omit) }}'
     pinned: "{{ 'true' if pkg_pin is defined and not pkg_pin else 'false' }}"
+    source: '{{ loop_choco.value.source | default(omit) }}'
